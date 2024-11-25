@@ -49,7 +49,6 @@ const Dashboard = () => {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Dashboard</h1>
-        <button className="btn btn-primary">Switch to New</button>
       </div>
 
       {/* Top Statistics */}
