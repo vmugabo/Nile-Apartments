@@ -1,24 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; // Import Calendar CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../firebase-config';
+import { Value } from 'react-calendar/dist/cjs/shared/types';
 
 const Dashboard = () => {
-  // State for selected date and reservations
+  
   const [date, setDate] = useState(new Date());
-  const [reservations, setReservations] = useState<{ [key: string]: string[] }>({
-    "2024-11-24": ["John Doe - Room 101", "Jane Smith - Room 102"],
-    "2024-11-25": ["Alice Brown - Room 201"],
-  });
+  const [reservations, setReservations] = useState<{ [key: string]: string[] }>({});
+  const [loading, setLoading] = useState(false);
 
-  // Format the selected date to match the keys in reservations
-const formatDate = (date: Date): string => date.toISOString().split("T")[0];
+  
+  const formatDate = (date: Date): string => date.toISOString().split("T")[0];
+
+ 
+  useEffect(() => {
+    const fetchReservations = async () => {
+      setLoading(true);
+      const formattedDate = formatDate(date);
+      try {
+        const reservationsRef = collection(db, 'reservations');
+        const q = query(reservationsRef, where('date', '==', formattedDate));
+        const querySnapshot = await getDocs(q);
+
+        const reservationsData: { [key: string]: string[] } = {};
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.date && data.details) {
+            reservationsData[data.date] = data.details;
+          }
+        });
+
+        setReservations(reservationsData);
+      } catch (error) {
+        console.error('Error fetching reservations:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReservations();
+  }, [date]);
 
   return (
     <div className="container mt-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1>November 24, 2024</h1>
+        <h1>Dashboard</h1>
         <button className="btn btn-primary">Switch to New</button>
       </div>
 
@@ -97,28 +127,29 @@ const formatDate = (date: Date): string => date.toISOString().split("T")[0];
             <div className="card-body">
               {/* Calendar */}
               <Calendar
-                onChange={(value: Date) => setDate(value)}
-                value={date}
-                tileClassName={({ date, view }) => {
-                  // Highlight dates with reservations
-                  const formattedDate = formatDate(date);
-                  return reservations[formattedDate]
-                    ? "bg-success text-white"
-                    : null;
+                onChange={(value: Value, event: React.MouseEvent<HTMLButtonElement>) => {
+                  if (value instanceof Date) {
+                    setDate(value);
+                  }
                 }}
+                value={date}
               />
               {/* Reservation Details */}
               <div className="mt-3">
                 <h6>Reservations for {date.toDateString()}:</h6>
-                <ul>
-                  {reservations[formatDate(date)] ? (
-                    reservations[formatDate(date)].map((reservation, index) => (
-                      <li key={index}>{reservation}</li>
-                    ))
-                  ) : (
-                    <li>No reservations</li>
-                  )}
-                </ul>
+                {loading ? (
+                  <p>Loading...</p>
+                ) : (
+                  <ul>
+                    {reservations[formatDate(date)] ? (
+                      reservations[formatDate(date)].map((reservation, index) => (
+                        <li key={index}>{reservation}</li>
+                      ))
+                    ) : (
+                      <li>No reservations</li>
+                    )}
+                  </ul>
+                )}
               </div>
             </div>
           </div>
