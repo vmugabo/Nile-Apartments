@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => (
         </Link>
       </li>
       <li className="nav-item mb-2">
-        <Link to="/bookings" className="nav-link text-dark">
+        <Link to="/booking" className="nav-link text-dark">
           Booking Engine
         </Link> </li>
       
