@@ -5,8 +5,9 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Booking from './components/Booking';
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CalendarWithGuestRegistration from './components/BookNow'
+import CalendarWithCheckInCheckOut from './components/BookNow';
 
 const App: React.FC = () => (
   <Router>
@@ -18,6 +19,7 @@ const App: React.FC = () => (
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/booking" element={<Booking />} />
+          <Route path="/book-now" element={<CalendarWithCheckInCheckOut/>} />
         </Routes>
       </div>
     </div>
