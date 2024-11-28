@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CalendarWithCheckInCheckOut from './BookNow';
 
 const rooms = [
   {
@@ -43,6 +44,11 @@ const handleSelectionChange = (index: number, key: 'adults' | 'children' | 'room
   const updatedSelections = [...selectedRooms];
   updatedSelections[index][key] = value;
   setSelectedRooms(updatedSelections);
+};
+
+const handleBookNow = () => {
+  console.log("Booking details:", selectedRooms);
+  // Add your booking logic here
 };
 
 return (
@@ -150,7 +156,7 @@ return (
       </div>
     ))}
     <div className="text-end">
-      <button className="btn btn-primary">BOOK NOW</button>
+      <button className="btn btn-primary" onClick={handleBookNow}>BOOK NOW</button>
     </div>
   </div>
 );

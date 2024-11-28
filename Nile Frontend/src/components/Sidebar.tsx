@@ -19,7 +19,11 @@ const Sidebar: React.FC = () => (
         <Link to="/booking" className="nav-link text-dark">
           Booking Engine
         </Link> </li>
-      
+      <li className="nav-item mb-2">
+        <Link to="/book-now" className="nav-link text-dark">
+          Add Reservation
+        </Link>
+      </li>
     </ul>
   </div>
 );
