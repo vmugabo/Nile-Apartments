@@ -70,12 +70,14 @@ const CalendarWithCheckInCheckOut = () => {
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Apartment Booking Calendar</h2>
-      <Calendar
-        onClickDay={handleDateSelect} // Trigger the modal when a date is clicked
-        value={new Date()} // Set the current date as the default value
-        className="mx-auto"
-        tileClassName={tileClassName} // Highlight dates
-      />
+      <div className="custom-calendar-container mx-auto mb-4">
+        <Calendar
+          onClickDay={handleDateSelect}
+          value={new Date()}
+          className="custom-calendar"
+          tileClassName={tileClassName}
+        />
+      </div>
 
       {/* Modal for guest registration */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -137,6 +139,19 @@ const CalendarWithCheckInCheckOut = () => {
       </Modal>
       <style>
         {`
+          .custom-calendar-container {
+            width: 90%;
+            max-width: 1000px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          }
+          .custom-calendar {
+            font-size: 1.5rem; /* Increased font size for larger appearance */
+            background-color: #fff;
+            border-radius: 8px;
+          }
           .highlight-checkin {
             background-color: #4caf50 !important;
             color: white !important;
@@ -151,6 +166,10 @@ const CalendarWithCheckInCheckOut = () => {
             background-color: #ffeb3b !important;
             color: black !important;
             border-radius: 50%;
+          }
+          .react-calendar__tile--active {
+            background: #2196f3 !important;
+            color: white !important;
           }
         `}
       </style>

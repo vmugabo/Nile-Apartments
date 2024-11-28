@@ -18,7 +18,7 @@ const rooms = [
     name: "Double Room",
     maxOccupancy: 2,
     minimumStay: "1 Night(s)",
-    nonRefundablePrice: 728885,
+    nonRefundablePrice: 72885,
     refundablePrice: 97837,
     imgSrc: "/double.jpg",
     available: 3,

@@ -6,7 +6,6 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Booking from './components/Booking';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CalendarWithGuestRegistration from './components/BookNow'
 import CalendarWithCheckInCheckOut from './components/BookNow';
 
 const App: React.FC = () => (
