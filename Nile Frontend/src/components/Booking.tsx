@@ -11,7 +11,7 @@ const rooms = [
     nonRefundablePrice: 85076,
     refundablePrice: 97837,
     imgSrc: "/terrace.jpg",
-    available: null,
+    available: 1,
   },
   {
     id: 2,

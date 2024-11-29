@@ -6,8 +6,10 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import Booking from './components/Booking';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import CalendarWithCheckInCheckOut from './components/BookNow';
-import Login from './components/login';
+import Login from './components/Login';
 
 const App: React.FC = () => {
   // Authentication state
