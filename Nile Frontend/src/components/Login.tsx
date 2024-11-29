@@ -2,34 +2,17 @@ import React, { useState } from 'react';
 
 const Login: React.FC<{ onLogin?: () => void }> = ({ onLogin }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const [showSignup, setShowSignup] = useState(false); // Toggle state for showing sign-up form
-  const [signupData, setSignupData] = useState({ name: '', email: '', password: '' }); // For sign-up form
 
-  const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleChangeSignup = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSignupData({ ...signupData, [name]: value });
-  };
-
-  const handleSubmitLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.email && formData.password) {
       alert('Login successful!');
       if (onLogin) onLogin();
-    } else {
-      alert('Please fill out all fields.');
-    }
-  };
-
-  const handleSubmitSignup = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (signupData.name && signupData.email && signupData.password) {
-      alert('Sign-up successful!');
-      setShowSignup(false); // Hide signup form after successful sign-up
     } else {
       alert('Please fill out all fields.');
     }
@@ -40,103 +23,43 @@ const Login: React.FC<{ onLogin?: () => void }> = ({ onLogin }) => {
       <div style={styles.box}>
         <div style={styles.header}>
           <h2 style={styles.title}>Welcome to Nile Apartments</h2>
-          <p style={styles.subtitle}>
-            {showSignup ? 'Create a new account' : 'Sign in to continue'}
-          </p>
+          <p style={styles.subtitle}>Sign in to continue</p>
         </div>
-        {showSignup ? (
-          // Show signup form
-          <form onSubmit={handleSubmitSignup} style={styles.form}>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Name</label>
-              <input
-                type="text"
-                name="name"
-                value={signupData.name}
-                onChange={handleChangeSignup}
-                style={styles.input}
-                placeholder="Enter your name"
-                required
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={signupData.email}
-                onChange={handleChangeSignup}
-                style={styles.input}
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Password</label>
-              <input
-                type="password"
-                name="password"
-                value={signupData.password}
-                onChange={handleChangeSignup}
-                style={styles.input}
-                placeholder="Create a password"
-                required
-              />
-            </div>
-            <button type="submit" style={styles.button}>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              style={styles.input}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              style={styles.input}
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" style={styles.button}>
+            Sign In
+          </button>
+          <p style={styles.footer}>
+            Don’t have an account?{' '}
+            <span style={styles.signupLink} onClick={() => alert('Redirect to Sign Up')}>
               Sign Up
-            </button>
-            <p style={styles.footer}>
-              Already have an account?{' '}
-              <span
-                style={styles.signupLink}
-                onClick={() => setShowSignup(false)} // Switch to login form
-              >
-                Sign In
-              </span>
-            </p>
-          </form>
-        ) : (
-          // Show login form
-          <form onSubmit={handleSubmitLogin} style={styles.form}>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChangeLogin}
-                style={styles.input}
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChangeLogin}
-                style={styles.input}
-                placeholder="Enter your password"
-                required
-              />
-            </div>
-            <button type="submit" style={styles.button}>
-              Sign In
-            </button>
-            <p style={styles.footer}>
-              Don’t have an account?{' '}
-              <span
-                style={styles.signupLink}
-                onClick={() => setShowSignup(true)} // Switch to sign-up form
-              >
-                Sign Up
-              </span>
-            </p>
-          </form>
-        )}
+            </span>
+          </p>
+        </form>
       </div>
     </div>
   );
@@ -164,7 +87,7 @@ const styles = {
   header: {
     backgroundColor: '#0071c2',
     color: 'white',
-    textAlign: 'center',
+    textAlign: 'center' as 'center',
     padding: '20px',
   },
   title: {
@@ -210,7 +133,7 @@ const styles = {
   },
   },
   footer: {
-    textAlign: 'center',
+    textAlign: 'center' as 'center',
     marginTop: '15px',
     fontSize: '14px',
   },
