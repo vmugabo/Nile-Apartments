@@ -139,6 +139,14 @@ const CalendarWithCheckInCheckOut = () => {
           </Form>
         </Modal.Body>
       </Modal>
+      {/* Show the success alert modal */}
+      {showAlert && (
+        <AlertModals
+          message="Your booking has been successfully placed!"
+          onClose={() => setShowAlert(false)}
+        />
+      )}
+
       <style>
         {`
           .custom-calendar-container {
