@@ -3,6 +3,8 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button, Form } from "react-bootstrap";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase-config"; // Adjust the path if necessary
 
 const CalendarWithCheckInCheckOut = () => {
   const [selectedDates, setSelectedDates] = useState<{
