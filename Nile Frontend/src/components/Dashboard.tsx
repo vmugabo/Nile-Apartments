@@ -124,6 +124,10 @@ const Dashboard = () => {
               <h5>Your Calendar</h5>
             </div>
             <div className="card-body">
+              {/* Calendar Header */}
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h5>{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</h5>
+              </div>
               {/* Calendar */}
               <Calendar
                 onChange={(value: Value, event: React.MouseEvent<HTMLButtonElement>) => {

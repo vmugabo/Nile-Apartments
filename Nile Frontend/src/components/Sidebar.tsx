@@ -25,42 +25,22 @@ const Sidebar: React.FC = () => {
       {/* Sidebar menu */}
       <ul className="nav flex-column">
         <li className="nav-item mb-2">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `nav-link text-dark ${isActive ? 'active' : ''}`
-            }
-          >
+          <NavLink to="/" className="nav-link text-dark" activeClassName="active">
             <FaHome className="me-2" /> {!collapsed && 'Home'}
           </NavLink>
         </li>
         <li className="nav-item mb-2">
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              `nav-link text-dark ${isActive ? 'active' : ''}`
-            }
-          >
+          <NavLink to="/dashboard" className="nav-link text-dark" activeClassName="active">
             <FaTachometerAlt className="me-2" /> {!collapsed && 'Dashboard'}
           </NavLink>
         </li>
         <li className="nav-item mb-2">
-          <NavLink
-            to="/booking"
-            className={({ isActive }) =>
-              `nav-link text-dark ${isActive ? 'active' : ''}`
-            }
-          >
+          <NavLink to="/booking" className="nav-link text-dark" activeClassName="active">
             <FaCalendarAlt className="me-2" /> {!collapsed && 'Booking Engine'}
           </NavLink>
         </li>
         <li className="nav-item mb-2">
-          <NavLink
-            to="/book-now"
-            className={({ isActive }) =>
-              `nav-link text-dark ${isActive ? 'active' : ''}`
-            }
-          >
+          <NavLink to="/book-now" className="nav-link text-dark" activeClassName="active">
             <FaPlus className="me-2" /> {!collapsed && 'Add Reservation'}
           </NavLink>
         </li>

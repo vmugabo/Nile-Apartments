@@ -156,9 +156,9 @@ return (
       </div>
     ))}
     <div className="text-end">
-      <button className="btn btn-primary" onClick={handleBookNow}>BOOK NOW</button>
+      <a href="#book-now" className="btn btn-primary">BOOK NOW</a>
     </div>
-  </div>
+    </div>
 );
 };
 
