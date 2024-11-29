@@ -6,10 +6,7 @@ const Sidebar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div
-      className={`d-flex flex-column vh-100 bg-light p-3 ${collapsed ? 'collapsed' : ''}`}
-      style={{ width: collapsed ? '80px' : '250px' }}
-    >
+    <div className={`d-flex flex-column vh-100 bg-light p-3 ${collapsed ? 'collapsed' : ''}`} style={{ width: collapsed ? '80px' : '250px' }}>
       {/* Button to collapse/expand the sidebar */}
       <button
         onClick={() => setCollapsed(!collapsed)}
@@ -25,22 +22,22 @@ const Sidebar: React.FC = () => {
       {/* Sidebar menu */}
       <ul className="nav flex-column">
         <li className="nav-item mb-2">
-          <NavLink to="/" className="nav-link text-dark" activeClassName="active">
+          <NavLink to="/" className={({ isActive }) => `nav-link text-dark ${isActive ? 'active' : ''}`}>
             <FaHome className="me-2" /> {!collapsed && 'Home'}
           </NavLink>
         </li>
         <li className="nav-item mb-2">
-          <NavLink to="/dashboard" className="nav-link text-dark" activeClassName="active">
+          <NavLink to="/dashboard" className={({ isActive }) => `nav-link text-dark ${isActive ? 'active' : ''}`}>
             <FaTachometerAlt className="me-2" /> {!collapsed && 'Dashboard'}
           </NavLink>
         </li>
         <li className="nav-item mb-2">
-          <NavLink to="/booking" className="nav-link text-dark" activeClassName="active">
+          <NavLink to="/booking" className={({ isActive }) => `nav-link text-dark ${isActive ? 'active' : ''}`}>
             <FaCalendarAlt className="me-2" /> {!collapsed && 'Booking Engine'}
           </NavLink>
         </li>
         <li className="nav-item mb-2">
-          <NavLink to="/book-now" className="nav-link text-dark" activeClassName="active">
+          <NavLink to="/book-now" className={({ isActive }) => `nav-link text-dark ${isActive ? 'active' : ''}`}>
             <FaPlus className="me-2" /> {!collapsed && 'Add Reservation'}
           </NavLink>
         </li>
@@ -48,9 +45,7 @@ const Sidebar: React.FC = () => {
 
       {/* Footer, hidden when collapsed */}
       <div className="mt-auto">
-        <p className={`text-muted small ${collapsed ? 'd-none' : ''}`}>
-          © 2024 Your Company
-        </p>
+        <p className={`text-muted small ${collapsed ? 'd-none' : ''}`}>© 2024 Your Company</p>
       </div>
     </div>
   );
