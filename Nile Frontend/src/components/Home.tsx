@@ -22,7 +22,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     height: '100vh',
-    padding: '20px',
+    padding: '40px',
     textAlign: 'center',
     color: '#003366',  // Dark blue for text
   },
@@ -30,7 +30,7 @@ const styles = {
     fontSize: '36px',
     fontWeight: 'bold',
     color: '#0071c2',  // Bright blue for the title
-    marginBottom: '15px',
+    marginBottom: '30px',
   },
   description: {
     fontSize: '18px',

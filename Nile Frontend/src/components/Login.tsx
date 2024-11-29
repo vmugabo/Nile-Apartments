@@ -189,7 +189,7 @@ const styles = {
   },
   input: {
     width: '100%',
-    padding: '10px',
+    padding: '12px',
     border: '1px solid #dcdcdc',
     borderRadius: '5px',
     fontSize: '14px',
@@ -205,6 +205,9 @@ const styles = {
     fontWeight: 'bold',
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
+    ':hover': {
+    backgroundColor: '#005fa3',  // Darker shade on hover
+  },
   },
   footer: {
     textAlign: 'center',
